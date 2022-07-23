@@ -1,14 +1,15 @@
 import streamlit as st
 import requests
 import json
+from zodiac_sign import your_sign
 
 # App icon & Title
 c1, c2 = st.columns([0.3, 2])
 
 with c1:
     st.image(
-        "icon.jpg",
-        width=90,
+        "icon.png",
+        width=100,
     )
 
 with c2:
@@ -18,13 +19,18 @@ with c2:
 with st.expander("App Details"):
      st.markdown("""
          💫 It gives you real-time horoscope & astrology info based on your zodiac sign.
-         \nBelow are the **12 Zodiac signs** categorized based on the main four elements of nature! 🌍
-         \nYou can find your sign according to your *birthday month* & check your horoscope 🧙‍♀️
-         \nFor more info --- >  **[zodiac signs](https://www.britannica.com/topic/zodiac)**
-         \nHave fun here! 🙌
+         \n- Below are the **12 Zodiac signs** categorized based on the main four elements of nature! 🌍
+         \n- You can find your zodiac sign **from the sidebar!** 🧙‍♀️
+         \n- For more info about zodiac signs --- >  **[Click here](https://www.britannica.com/topic/zodiac)**
+         \nHope you have fun! 🙌
      """)
 
 ##################################################################
+# Predicts your zodiac sign
+output = your_sign()
+st.sidebar.write('🦄Your sign is : ', output)
+
+##################################################################    
 # All 12 Zodiac signs acc. to their elements
 col1, col2, col3, col4 = st.columns([8,9,8,9])
 with col1:
@@ -57,30 +63,20 @@ with col4:
 
 ####################################################################
 
-# Input process
-c3, c4 = st.columns([5,5])
-with c3:
-    st.caption("")
-    sign = st.selectbox(
-        'Select your Zodiac Sign 👇',
-        ('', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'))
-with c4:
-    st.caption("")
-    day = st.selectbox('Select one day 👇',
-    ('', 'today', 'yesterday', 'tomorrow'))
+st.caption("")
+sign = st.selectbox(
+    'Select your Zodiac Sign 👇',
+    ('', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'))
 
-# Selected data
-selected = (
-('sign', sign),
-('day', day),
-)
-
-
-
-#####################################################################
-
-# Output
-if st.button('View Results! 🤞'):
+# Results Function --->
+def results(day):
+    
+    # Parameters added
+    selected = (
+        ('sign', sign),
+        ('day', day),
+        )
+    
     # Passing the data using API link
     daily = requests.post('https://aztro.sameerkumar.website/', params=selected)
 
@@ -94,16 +90,29 @@ if st.button('View Results! 🤞'):
     st.success(desc)
     
     c5, c6, c7 = st.columns([4,6,6])
-    
+        
     with c5:
         st.write('📅Date Range:', h_scope['date_range'])
         st.write('📅Date:', h_scope['current_date'])
     
     with c6:
-        st.write('✨Compatibility:', h_scope['compatibility'])
+        st.write('🧡Compatibility:', h_scope['compatibility'])
         st.write('🙄Mood:', h_scope['mood'])
         st.write('🌟Color:', h_scope['color'])
     
     with c7:
         st.write('🔢Lucky Number:', h_scope['lucky_number'])
         st.write('⌚Lucky Time:', h_scope['lucky_time'])
+
+
+
+if st.button('View Results! 🤞'):
+    tab1, tab2, tab3 = st.tabs(["TODAY", "YESTERDAY", "TOMORROW"])
+    with tab1:
+        results('today')
+        
+    with tab2:
+        results('yesterday')
+        
+    with tab3:
+        results('tomorrow')
