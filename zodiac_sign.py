@@ -2,6 +2,7 @@ import streamlit as st
 
 def your_sign():
     st.sidebar.header('💫CHECK YOUR ZODIAC HERE!')
+    st.sidebar.write("")
     day = st.sidebar.slider('Select your 🎂 date 👇', 1, 31)
     
     month = st.sidebar.select_slider(
