@@ -1,7 +1,11 @@
 import streamlit as st
 import requests
 import json
-from zodiac_sign import your_sign
+from zodiac_sign import your_sign, tweet_button
+
+st.set_page_config(
+    page_title="Daily Horoscope",
+    page_icon="🔮",)
 
 # App icon & Title
 c1, c2 = st.columns([0.3, 2])
@@ -28,7 +32,14 @@ with st.expander("App Details"):
 ##################################################################
 # Predicts your zodiac sign
 output = your_sign()
-st.sidebar.write('🦄Your sign is : ', output)
+with st.sidebar:
+    st.write('🦄Your sign is : ', output)
+    
+    # Tweet about this app!
+    tweet_button(tag='share', 
+             link='https://shruagarwal-streamlit-horoscope-horoscope-app-gws5c9.streamlit.app/', 
+             text='Check your horoscope today with Streamlit! 🔮', 
+             user='Shru_explores')
 
 ##################################################################    
 # All 12 Zodiac signs acc. to their elements
