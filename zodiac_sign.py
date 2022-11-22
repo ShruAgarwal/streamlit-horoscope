@@ -49,3 +49,20 @@ def your_sign():
         zodiac = ''
 
     return zodiac
+
+
+# Tweet button support
+def tweet_button(tag: str, 
+                 link: str, 
+                text: str, 
+                user: str):
+  tweet = f"""
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script><br/><br/><br/>
+  <a href="https://twitter.com/intent/tweet?url={link}&text={text}&via={user}&hashtags={tag}">
+  <button class="ui twitter button large ui button">
+   <i class="twitter icon"></i>
+    Tweet
+  </button></a>
+    """
+  st.markdown(tweet, unsafe_allow_html=True)
