@@ -42,8 +42,8 @@ with st.sidebar:
              link='https://shruagarwal-streamlit-horoscope-horoscope-app-gws5c9.streamlit.app/', 
              text='Check your horoscope today with Streamlit! 🔮', 
              user='Shru_explores')
-    
 ##################################################################    
+
 # All 12 Zodiac signs acc. to their elements
 col1, col2, col3, col4 = st.columns(4, gap="medium")
 with col1:
@@ -78,7 +78,7 @@ with col4:
 
 st.write("")
 st.write("")
-st.write("")
+st.caption("")
 sign = st.selectbox(
     'Select your Zodiac Sign 👇',
     ('', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'))
