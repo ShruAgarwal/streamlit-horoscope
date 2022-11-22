@@ -3,12 +3,13 @@ import requests
 import json
 from zodiac_sign import your_sign, tweet_button
 
+
 st.set_page_config(
     page_title="Daily Horoscope",
     page_icon="🔮",)
 
 # App icon & Title
-c1, c2 = st.columns([0.3, 2])
+c1, c2 = st.columns([0.3, 2], gap="large")
 
 with c1:
     st.image(
@@ -17,7 +18,8 @@ with c1:
     )
 
 with c2:
-    st.caption("")
+    st.write("")
+    st.write("")
     st.title('DAILY HOROSCOPE APP')
 
 with st.expander("App Details"):
@@ -27,23 +29,23 @@ with st.expander("App Details"):
          \n- You can find your zodiac sign **from the sidebar!** 🧙‍♀️
          \n- For more info about zodiac signs --- >  **[Click here](https://www.britannica.com/topic/zodiac)**
          \nHope you have fun! 🙌
+
      """)
 
 ##################################################################
-# Predicts your zodiac sign
+# Checks your zodiac sign
 output = your_sign()
 with st.sidebar:
     st.write('🦄Your sign is : ', output)
     
-    # Tweet about this app!
     tweet_button(tag='share', 
              link='https://shruagarwal-streamlit-horoscope-horoscope-app-gws5c9.streamlit.app/', 
              text='Check your horoscope today with Streamlit! 🔮', 
              user='Shru_explores')
-
+    
 ##################################################################    
 # All 12 Zodiac signs acc. to their elements
-col1, col2, col3, col4 = st.columns([8,9,8,9])
+col1, col2, col3, col4 = st.columns(4, gap="medium")
 with col1:
     st.markdown('***🔥 Fire Signs***')
     st.markdown("""
@@ -74,7 +76,9 @@ with col4:
 
 ####################################################################
 
-st.caption("")
+st.write("")
+st.write("")
+st.write("")
 sign = st.selectbox(
     'Select your Zodiac Sign 👇',
     ('', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'))
@@ -99,22 +103,26 @@ def results(day):
     # Fetching Description element
     desc  = h_scope['description']
     st.success(desc)
+    st.write("")
     
-    c5, c6, c7 = st.columns([4,6,6])
+    c5, c6, c7 = st.columns(3, gap="medium")
         
     with c5:
         st.write('📅Date Range:', h_scope['date_range'])
+        st.caption("")
         st.write('📅Date:', h_scope['current_date'])
     
     with c6:
         st.write('🧡Compatibility:', h_scope['compatibility'])
+        st.caption("")
         st.write('🙄Mood:', h_scope['mood'])
+        st.caption("")
         st.write('🌟Color:', h_scope['color'])
     
     with c7:
         st.write('🔢Lucky Number:', h_scope['lucky_number'])
+        st.caption("")
         st.write('⌚Lucky Time:', h_scope['lucky_time'])
-
 
 
 if st.button('View Results! 🤞'):
