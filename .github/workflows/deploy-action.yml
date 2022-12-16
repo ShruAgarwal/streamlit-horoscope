@@ -5,6 +5,10 @@ on:
   pull_request:
     types: opened
 
+# Avoid duplicate workflows on same branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   example_comment_pr:
