@@ -5,7 +5,7 @@ from zodiac_sign import your_sign
 
 
 st.set_page_config(
-    page_title="Daily Horoscope App",
+    page_title="Daily Horoscope Streamlit App",
     page_icon="🔮",)
 
 # App icon & Title
