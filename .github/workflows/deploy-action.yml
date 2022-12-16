@@ -1,0 +1,25 @@
+name: Streamlit deploy
+on:
+  push:
+    branches:
+      - 'main'
+      - 'changes/**'
+  pull_request:
+    types: opened
+    
+# Avoid duplicate workflows on same branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Comment with deploy link
+      uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/deploy?repository=ShruAgarwal/streamlit-horoscope&branch=main&mainModule=horoscope_app.py)
