@@ -1,9 +1,7 @@
 name: Streamlit deploy
 on:
   push:
-    branches:
-      - main
-      - changes/**
+    branches: main
   pull_request:
     types: opened
 
