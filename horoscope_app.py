@@ -5,7 +5,7 @@ from zodiac_sign import your_sign
 
 
 st.set_page_config(
-    page_title="Daily Horoscope App",
+    page_title="Daily Horoscope Streamlit App",
     page_icon="🔮",)
 
 # App icon & Title
@@ -35,7 +35,7 @@ with st.expander("App Details"):
 ##################################################################
 # Checks your zodiac sign
 output = your_sign()
-st.sidebar.write('🦄 Your sign is : ', output)
+st.sidebar.write('🦄Your sign is : ', output)
 ##################################################################    
 
 # All 12 Zodiac signs acc. to their elements
