@@ -35,7 +35,7 @@ with st.expander("App Details"):
 ##################################################################
 # Checks your zodiac sign
 output = your_sign()
-st.sidebar.write('🦄 Your sign is : ', output)
+st.sidebar.write('🏹 Your sign is : ', output)
 ##################################################################    
 
 # All 12 Zodiac signs acc. to their elements
